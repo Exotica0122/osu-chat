@@ -28,9 +28,13 @@ const user: User = {
 
 const client = new StreamVideoClient({ apiKey, user, token });
 const call = client.call("default", callId);
-call.join({ create: true });
+call.join({ create: true }).catch((e) => console.error(e));
 
 export default function App() {
+  if (!client) {
+    return <div>loading...</div>;
+  }
+
   return (
     <StreamVideo client={client}>
       <StreamCall call={call}>
@@ -40,7 +44,7 @@ export default function App() {
   );
 }
 
-export const MyUILayout = () => {
+const MyUILayout = () => {
   const { useCallCallingState } = useCallStateHooks();
   const callingState = useCallCallingState();
 

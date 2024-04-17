@@ -6,7 +6,7 @@ import {
 } from "next-auth";
 import { type Adapter } from "next-auth/adapters";
 
-import { env } from "@/env";
+// import { env } from "@/env";
 import { db } from "@/server/db";
 import { createTable } from "@/server/db/schema";
 
