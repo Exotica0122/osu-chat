@@ -1,6 +1,8 @@
 import "@/styles/globals.css";
 
 import { Inter } from "next/font/google";
+import NextAuthProvider from "./NextAuthProvider";
+import OsuProvider from "./OsuProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,7 +22,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>{children}</body>
+      <NextAuthProvider>
+        <OsuProvider>
+          <body className={`font-sans ${inter.variable}`}>{children}</body>
+        </OsuProvider>
+      </NextAuthProvider>
     </html>
   );
 }

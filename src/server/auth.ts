@@ -5,10 +5,12 @@ import {
   type NextAuthOptions,
 } from "next-auth";
 import { type Adapter } from "next-auth/adapters";
+import OsuProvider from "next-auth/providers/osu";
 
 // import { env } from "@/env";
 import { db } from "@/server/db";
 import { createTable } from "@/server/db/schema";
+import { env } from "@/env";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -37,6 +39,7 @@ declare module "next-auth" {
  * @see https://next-auth.js.org/configuration/options
  */
 export const authOptions: NextAuthOptions = {
+  debug: true,
   callbacks: {
     session: ({ session, user }) => ({
       ...session,
@@ -48,6 +51,13 @@ export const authOptions: NextAuthOptions = {
   },
   adapter: DrizzleAdapter(db, createTable) as Adapter,
   providers: [
+    OsuProvider({
+      clientId: env.AUTH_OSU_ID,
+      clientSecret: env.AUTH_OSU_SECRET,
+      authorization: {
+        params: { scope: "identify public friends.read chat.read chat.write" },
+      },
+    }),
     /**
      * ...add more providers here.
      *

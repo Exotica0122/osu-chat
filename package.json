@@ -6,6 +6,7 @@
   "scripts": {
     "build": "next build",
     "db:push": "drizzle-kit push:pg",
+    "db:migrate": "drizzle-kit generate:mysql",
     "db:studio": "drizzle-kit studio",
     "dev": "next dev",
     "lint": "next lint",
@@ -18,10 +19,12 @@
     "drizzle-orm": "^0.29.4",
     "next": "^14.2.1",
     "next-auth": "^4.24.6",
+    "osu-web.js": "^2.4.0",
     "postgres": "^3.4.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@types/eslint": "^8.56.2",
