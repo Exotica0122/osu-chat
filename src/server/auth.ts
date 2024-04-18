@@ -55,7 +55,7 @@ export const authOptions: NextAuthOptions = {
       clientId: env.AUTH_OSU_ID,
       clientSecret: env.AUTH_OSU_SECRET,
       authorization: {
-        params: { scope: "identify public friends.read chat.read chat.write" },
+        params: { scope: "identify public" },
       },
     }),
     /**

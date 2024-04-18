@@ -3,6 +3,8 @@ import "@/styles/globals.css";
 import { Inter } from "next/font/google";
 import NextAuthProvider from "./NextAuthProvider";
 import OsuProvider from "./OsuProvider";
+import { ThemeProvider } from "./ThemeProvider";
+import { Header } from "@/components/header";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,12 +23,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <NextAuthProvider>
-        <OsuProvider>
-          <body className={`font-sans ${inter.variable}`}>{children}</body>
-        </OsuProvider>
-      </NextAuthProvider>
+    <html suppressHydrationWarning lang="en">
+      <head />
+      <body className={`font-sans ${inter.variable}`}>
+        <NextAuthProvider>
+          <OsuProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Header />
+              {children}
+            </ThemeProvider>
+          </OsuProvider>
+        </NextAuthProvider>
+      </body>
     </html>
   );
 }

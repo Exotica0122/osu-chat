@@ -23,7 +23,6 @@ export default function OsuProvider({ children }: { children: ReactNode }) {
           );
 
         const client = new Client(data.accessToken);
-        console.log(client);
 
         setClient(client);
       }
