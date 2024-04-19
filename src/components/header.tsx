@@ -30,7 +30,7 @@ import { UserProfile } from "./user-profile";
 
 export function Header() {
   return (
-    <header className="flex items-center justify-between bg-gray-900 px-4 py-3 text-white">
+    <header className="flex items-center justify-between bg-gray-100 px-4 py-3 text-gray-900 dark:bg-gray-900 dark:text-white">
       <div className="flex items-center space-x-4">
         <Link href="/">osu-chat</Link>
       </div>

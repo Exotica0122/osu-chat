@@ -1,9 +1,9 @@
 import "@/styles/globals.css";
 
 import { Inter } from "next/font/google";
-import NextAuthProvider from "./NextAuthProvider";
-import OsuProvider from "./OsuProvider";
-import { ThemeProvider } from "./ThemeProvider";
+import NextAuthProvider from "./(providers)/NextAuthProvider";
+import OsuProvider from "./(providers)/OsuProvider";
+import { ThemeProvider } from "./(providers)/ThemeProvider";
 import { Header } from "@/components/header";
 
 const inter = Inter({
