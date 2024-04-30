@@ -27,12 +27,21 @@ import Link from "next/link";
 
 import { ModeToggle } from "./mode-toggle";
 import { UserProfile } from "./user-profile";
+import Image from "next/image";
 
 export function Header() {
   return (
     <header className="flex items-center justify-between bg-gray-100 px-4 py-3 text-gray-900 dark:bg-gray-900 dark:text-white">
       <div className="flex items-center space-x-4">
-        <Link href="/">osu-chat</Link>
+        <Link href="/" className="flex items-center space-x-4">
+          <Image
+            src="/static/osu-logo.svg"
+            alt={"osu-l"}
+            width={50}
+            height={50}
+          />
+          <span className="font-bold">osu-chat</span>
+        </Link>
       </div>
       <div className="flex items-center space-x-6">
         <Link className="hover:text-gray-300" href="/browse">

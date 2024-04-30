@@ -1,14 +1,23 @@
 import "@/styles/globals.css";
 
-import { Inter } from "next/font/google";
 import NextAuthProvider from "./(providers)/NextAuthProvider";
 import OsuProvider from "./(providers)/OsuProvider";
 import { ThemeProvider } from "./(providers)/ThemeProvider";
 import { Header } from "@/components/header";
+import localFont from "@next/font/local";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
+const torus = localFont({
+  src: [
+    {
+      path: "../../public/fonts/TorusRegular.734ed3ae.otf",
+      weight: "400",
+    },
+    {
+      path: "../../public/fonts/TorusBold.c233ce17.otf",
+      weight: "700",
+    },
+  ],
+  variable: "--font-torus",
 });
 
 export const metadata = {
@@ -25,7 +34,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <head />
-      <body className={`font-sans ${inter.variable}`}>
+      <body className={`font-sans ${torus.variable}`}>
         <NextAuthProvider>
           <OsuProvider>
             <ThemeProvider
