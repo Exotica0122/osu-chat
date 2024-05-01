@@ -127,6 +127,5 @@ export const room = createTable("room", {
   name: text("name").notNull(),
   description: text("description"),
   tags: text("tags").notNull(),
-  rankRange: integer("rankRange"),
   osuCollectorLink: text("osuCollectorLink"),
 });
