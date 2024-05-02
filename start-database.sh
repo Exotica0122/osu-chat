@@ -47,6 +47,7 @@ fi
 
 docker run -d \
   --name $DB_CONTAINER_NAME \
+  -e POSTGRES_USER="postgres" \
   -e POSTGRES_PASSWORD="$DB_PASSWORD" \
   -e POSTGRES_DB=osu-chat \
   -p 5432:5432 \

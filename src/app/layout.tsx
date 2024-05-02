@@ -4,7 +4,7 @@ import NextAuthProvider from "./(providers)/NextAuthProvider";
 import OsuProvider from "./(providers)/OsuProvider";
 import { ThemeProvider } from "./(providers)/ThemeProvider";
 import { Header } from "@/components/header";
-import localFont from "@next/font/local";
+import localFont from "next/font/local";
 
 const torus = localFont({
   src: [
