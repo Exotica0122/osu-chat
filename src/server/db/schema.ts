@@ -129,3 +129,5 @@ export const room = createTable("room", {
   tags: text("tags").notNull(),
   osuCollectorLink: text("osuCollectorLink"),
 });
+
+export type Room = typeof room.$inferSelect;

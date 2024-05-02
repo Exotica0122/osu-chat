@@ -43,8 +43,7 @@ export const CreateRoom = () => {
     if (!session.data) return;
 
     const { name, description, tags, osuCollectorLink } = values;
-    console.log(values);
-
+    db;
     // await db.insert(room).values({
     //   name,
     //   description,
