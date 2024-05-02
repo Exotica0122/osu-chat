@@ -1,7 +1,16 @@
 import { room, type Room } from "@/server/db/schema";
 import { db } from "@/server/db";
-import { eq } from "drizzle-orm";
+import { eq, ilike } from "drizzle-orm";
 import { getServerAuthSession } from "@/server/auth";
+
+export async function getRooms(search: string | undefined) {
+  const searchTag = search ? ilike(room.tags, `%${search}%`) : undefined;
+  const rooms = await db.query.room.findMany({
+    where: searchTag,
+  });
+
+  return rooms;
+}
 
 export async function createRoom(
   roomData: Omit<Room, "id" | "userId">,

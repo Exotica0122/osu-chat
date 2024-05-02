@@ -20,6 +20,7 @@ export function Header() {
             alt={"osu-l"}
             width={50}
             height={50}
+            priority
           />
           <span className="font-bold">osu-chat</span>
         </Link>

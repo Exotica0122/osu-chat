@@ -1,5 +1,6 @@
 "use client";
 
+import "@stream-io/video-react-sdk/dist/css/styles.css";
 import { env } from "@/env";
 import {
   CallControls,
@@ -12,13 +13,13 @@ import {
 } from "@stream-io/video-react-sdk";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-
-import "@stream-io/video-react-sdk/dist/css/styles.css";
 import { generateTokenAction } from "./actions";
+import { useRouter } from "next/navigation";
 
 const apiKey = env.NEXT_PUBLIC_GET_STREAM_IO_API_KEY;
 
 export const VideoPlayer = ({ room }: { room: { id: string } }) => {
+  const router = useRouter();
   const session = useSession();
   const [client, setClient] = useState<StreamVideoClient | null>(null);
   const [call, setCall] = useState<Call | null>(null);
@@ -41,8 +42,10 @@ export const VideoPlayer = ({ room }: { room: { id: string } }) => {
     call.join({ create: true }).catch((error) => console.log(error));
 
     return () => {
-      void call.leave();
-      void client.disconnectUser();
+      call
+        .leave()
+        .then(() => client.disconnectUser())
+        .catch(console.error);
     };
   }, [room, session]);
 
@@ -53,7 +56,7 @@ export const VideoPlayer = ({ room }: { room: { id: string } }) => {
           <StreamCall call={call}>
             <StreamTheme>
               <SpeakerLayout />
-              <CallControls />
+              <CallControls onLeave={() => router.push("/browse")} />
             </StreamTheme>
           </StreamCall>
         </StreamVideo>

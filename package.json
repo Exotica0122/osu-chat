@@ -43,6 +43,7 @@
     "stream-chat-react": "^11.16.1",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
+    "use-debounce": "^10.0.0",
     "zod": "^3.23.5",
     "zustand": "^4.5.2"
   },
