@@ -14,10 +14,9 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 import "@stream-io/video-react-sdk/dist/css/styles.css";
+import { generateTokenAction } from "./actions";
 
 const apiKey = env.NEXT_PUBLIC_GET_STREAM_IO_API_KEY;
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYjFlMjJmYzYtYmQ0NC00NWI3LTkyNmUtZDkwMjY0YTNlMTUyIn0.VdmsjSJTH2JROQccvDFbS3B-qE1-rjgM01clEIGv1Ns";
 
 export const VideoPlayer = ({ room }: { room: { id: string } }) => {
   const session = useSession();
@@ -32,7 +31,7 @@ export const VideoPlayer = ({ room }: { room: { id: string } }) => {
     const client = new StreamVideoClient({
       apiKey,
       user: { id: userId },
-      token,
+      tokenProvider: () => generateTokenAction(),
     });
     const call = client.call("default", room.id);
 
@@ -62,15 +61,3 @@ export const VideoPlayer = ({ room }: { room: { id: string } }) => {
     </>
   );
 };
-
-// export const MyVideoUI = () => {
-//   const { useParticipants } = useCallStateHooks();
-//   const participants = useParticipants();
-//   return (
-//     <>
-//       {participants.map((p) => (
-//         <ParticipantView participant={p} key={p.sessionId} />
-//       ))}
-//     </>
-//   );
-// };

@@ -4,25 +4,6 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 
-/** Add fonts into your Next.js project:
-
-import { Inter } from 'next/font/google'
-import { Inter } from 'next/font/google'
-
-inter({
-  subsets: ['latin'],
-  display: 'swap',
-})
-
-inter({
-  subsets: ['latin'],
-  display: 'swap',
-})
-
-To read more about using these font, please visit the Next.js documentation:
-- App Directory: https://nextjs.org/docs/app/building-your-application/optimizing/fonts
-- Pages Directory: https://nextjs.org/docs/pages/building-your-application/optimizing/fonts
-**/
 import Link from "next/link";
 
 import { ModeToggle } from "./mode-toggle";
@@ -47,7 +28,7 @@ export function Header() {
         <Link className="hover:text-gray-300" href="/browse">
           Browse
         </Link>
-        <Link className="hover:text-gray-300" href="/rooms">
+        <Link className="hover:text-gray-300" href="/manage-rooms">
           Manage Rooms
         </Link>
       </div>

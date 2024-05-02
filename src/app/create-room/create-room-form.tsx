@@ -2,9 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { db } from "@/server/db";
-import { room } from "@/server/db/schema";
-import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,18 +14,22 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
+import { createRoomAction } from "./actions";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 
 const createRoomFormSchema = z.object({
   name: z.string(),
   description: z.string(),
   tags: z.string(),
-  osuCollectorLink: z.string().url(),
+  osuCollectorLink: z.union([z.literal(""), z.string().trim().url()]),
 });
 
 type CreateRoomFormSchemaType = z.infer<typeof createRoomFormSchema>;
 
-export const CreateRoom = () => {
-  const session = useSession();
+export const CreateRoomForm = () => {
+  const router = useRouter();
+  const { toast } = useToast();
   const form = useForm<CreateRoomFormSchemaType>({
     resolver: zodResolver(createRoomFormSchema),
     defaultValues: {
@@ -40,17 +41,19 @@ export const CreateRoom = () => {
   });
 
   const onCreateRoomSubmit = async (values: CreateRoomFormSchemaType) => {
-    if (!session.data) return;
-
-    const { name, description, tags, osuCollectorLink } = values;
-    db;
-    // await db.insert(room).values({
-    //   name,
-    //   description,
-    //   tags,
-    //   osuCollectorLink,
-    //   userId: session.data.user.id,
-    // });
+    const room = await createRoomAction(values);
+    if (!room) {
+      toast({
+        title: "Room Not Created",
+        description: "Could not create room. Please try again",
+      });
+      return;
+    }
+    toast({
+      title: "Room Created",
+      description: "Your room was successfully created",
+    });
+    void router.push(`/rooms/${room.id}`);
   };
 
   return (
@@ -94,7 +97,7 @@ export const CreateRoom = () => {
               <FormItem>
                 <FormLabel>Tags (Separated by spaces)</FormLabel>
                 <FormControl>
-                  <Input placeholder="Tags" {...field} />
+                  <Input placeholder="Reading, Low AR" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

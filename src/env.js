@@ -24,6 +24,7 @@ export const env = createEnv({
     ),
     AUTH_OSU_ID: z.string(),
     AUTH_OSU_SECRET: z.string(),
+    GET_STREAM_IO_SECRET_KEY: z.string(),
   },
 
   /**
@@ -49,6 +50,7 @@ export const env = createEnv({
     AUTH_OSU_SECRET: process.env.AUTH_OSU_SECRET,
     NEXT_PUBLIC_GET_STREAM_IO_API_KEY:
       process.env.NEXT_PUBLIC_GET_STREAM_IO_API_KEY,
+    GET_STREAM_IO_SECRET_KEY: process.env.GET_STREAM_IO_SECRET_KEY,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
