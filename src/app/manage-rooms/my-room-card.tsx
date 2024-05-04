@@ -13,7 +13,7 @@ import { type Room } from "@/server/db/schema";
 import Link from "next/link";
 import { deleteRoomAction } from "./actions";
 
-export const RoomCard = (room: Room) => {
+export const MyRoomCard = (room: Room) => {
   return (
     <Card>
       <CardHeader>

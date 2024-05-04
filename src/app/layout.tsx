@@ -5,6 +5,7 @@ import OsuProvider from "./(providers)/OsuProvider";
 import { ThemeProvider } from "./(providers)/ThemeProvider";
 import { Header } from "@/components/header";
 import localFont from "next/font/local";
+import NextTopLoader from "nextjs-toploader";
 
 const torus = localFont({
   src: [
@@ -43,6 +44,7 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
+              <NextTopLoader />
               <Header />
               {children}
             </ThemeProvider>

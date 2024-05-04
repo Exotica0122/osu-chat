@@ -1,5 +1,6 @@
 import { getRooms } from "@/data-access/rooms";
 import { SearchBar } from "./search-bar";
+import { RoomCard } from "./room-card";
 
 export default async function Browse({
   searchParams,
@@ -15,10 +16,7 @@ export default async function Browse({
       <p>Browse</p>
       <SearchBar />
       {rooms.map((room) => (
-        <>
-          <p>{room.name}</p>
-          <p>{room.tags}</p>
-        </>
+        <RoomCard key={room.id} room={room} />
       ))}
     </>
   );

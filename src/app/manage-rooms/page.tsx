@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { getUserRooms } from "@/data-access/rooms";
 import Link from "next/link";
-import { RoomCard } from "./room-card";
+import { MyRoomCard } from "./my-room-card";
 
 export default async function ManageRooms() {
   const rooms = await getUserRooms();
@@ -16,7 +16,7 @@ export default async function ManageRooms() {
 
       <div>
         {rooms.map((room) => (
-          <RoomCard {...room} key={room.id} />
+          <MyRoomCard {...room} key={room.id} />
         ))}
       </div>
     </>
