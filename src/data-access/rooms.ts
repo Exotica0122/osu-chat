@@ -36,3 +36,13 @@ export async function getUserRooms() {
   });
   return rooms;
 }
+
+export async function getRoom(roomId: string) {
+  return await db.query.room.findFirst({
+    where: eq(room.id, roomId),
+  });
+}
+
+export async function deleteRoom(roomId: string) {
+  await db.delete(room).where(eq(room.id, roomId));
+}
