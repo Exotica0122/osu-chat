@@ -4,6 +4,7 @@ import "@stream-io/video-react-sdk/dist/css/styles.css";
 import { env } from "@/env";
 import {
   CallControls,
+  CallParticipantsList,
   SpeakerLayout,
   StreamCall,
   StreamTheme,
@@ -31,7 +32,11 @@ export const VideoPlayer = ({ room }: { room: { id: string } }) => {
 
     const client = new StreamVideoClient({
       apiKey,
-      user: { id: userId },
+      user: {
+        id: userId,
+        name: session.data.user.name ?? undefined,
+        image: session.data.user.image ?? undefined,
+      },
       tokenProvider: () => generateTokenAction(),
     });
     const call = client.call("default", room.id);
@@ -42,6 +47,7 @@ export const VideoPlayer = ({ room }: { room: { id: string } }) => {
     call.join({ create: true }).catch((error) => console.log(error));
 
     return () => {
+      void client.disconnectUser();
       call
         .leave()
         .then(() => client.disconnectUser())
@@ -56,7 +62,8 @@ export const VideoPlayer = ({ room }: { room: { id: string } }) => {
           <StreamCall call={call}>
             <StreamTheme>
               <SpeakerLayout />
-              <CallControls onLeave={() => router.push("/browse")} />
+              <CallControls onLeave={() => router.push("/")} />
+              <CallParticipantsList onClose={() => undefined} />
             </StreamTheme>
           </StreamCall>
         </StreamVideo>

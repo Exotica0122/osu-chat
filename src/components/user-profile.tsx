@@ -52,15 +52,13 @@ export function UserProfile() {
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>{session.data.user.name}</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Settings</DropdownMenuItem>
           <DropdownMenuItem onClick={() => signOut()}>Logout</DropdownMenuItem>
         </DropdownMenuContent>
       );
     }
     return (
       <DropdownMenuContent align="end">
-        <DropdownMenuItem>Settings</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => signIn()}>Login</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => signIn("osu")}>Login</DropdownMenuItem>
       </DropdownMenuContent>
     );
   };

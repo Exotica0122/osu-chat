@@ -1,1 +1,13 @@
-{"version":"5","dialect":"mysql","entries":[]}
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1714769764775,
+      "tag": "0000_brainy_omega_flight",
+      "breakpoints": true
+    }
+  ]
+}

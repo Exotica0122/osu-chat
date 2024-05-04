@@ -6,7 +6,8 @@
   "scripts": {
     "build": "next build",
     "db:push": "drizzle-kit push:pg",
-    "db:migrate": "drizzle-kit generate:mysql",
+    "db:generate": "drizzle-kit generate:pg",
+    "db:migrate": "tsx src/server/db/migrate.ts",
     "db:studio": "drizzle-kit studio",
     "dev": "next dev",
     "lint": "next lint",
@@ -63,6 +64,7 @@
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "^3.4.1",
+    "tsx": "^4.8.2",
     "typescript": "^5.4.2"
   },
   "ct3aMetadata": {
