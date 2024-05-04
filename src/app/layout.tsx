@@ -44,7 +44,7 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <NextTopLoader />
+              <NextTopLoader showSpinner={false} />
               <Header />
               {children}
             </ThemeProvider>

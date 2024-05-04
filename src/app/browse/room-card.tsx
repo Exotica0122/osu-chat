@@ -11,13 +11,25 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { splitTags } from "@/lib/utils";
 import { TagList } from "@/components/tag-list";
+import { LinkIcon } from "lucide-react";
 
 export const RoomCard = ({ room }: { room: Room }) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{room.name}</CardTitle>
-        <CardDescription>{room.description}</CardDescription>
+        <CardTitle className="flex items-center justify-between">
+          <span>{room.name}</span>
+          {room.osuCollectorLink && (
+            <Button asChild variant={"outline"}>
+              <Link href={room.osuCollectorLink}>
+                <LinkIcon />
+              </Link>
+            </Button>
+          )}
+        </CardTitle>
+        <CardDescription className="truncate">
+          {room.description}
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <TagList tagList={splitTags(room.tags)} />
