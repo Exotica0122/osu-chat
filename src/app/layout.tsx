@@ -46,7 +46,7 @@ export default function RootLayout({
             >
               <NextTopLoader showSpinner={false} />
               <Header />
-              {children}
+              <div className="px-8 py-4 md:px-24 md:py-12">{children}</div>
             </ThemeProvider>
           </OsuProvider>
         </NextAuthProvider>

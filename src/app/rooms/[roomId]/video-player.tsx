@@ -56,7 +56,7 @@ export const VideoPlayer = ({ room }: { room: { id: string } }) => {
   }, [room, session]);
 
   return (
-    <>
+    <div className="border p-12">
       {client && call && (
         <StreamVideo client={client}>
           <StreamCall call={call}>
@@ -68,6 +68,6 @@ export const VideoPlayer = ({ room }: { room: { id: string } }) => {
           </StreamCall>
         </StreamVideo>
       )}
-    </>
+    </div>
   );
 };

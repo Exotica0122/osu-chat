@@ -12,7 +12,9 @@ export const SearchBar = () => {
   const [query] = useDebounce(search, 1000);
 
   useEffect(() => {
-    setSearch(searchParams.get("search") ?? "");
+    if (searchParams.get("search")) {
+      setSearch(searchParams.get("search") ?? "");
+    }
   }, [searchParams]);
 
   useEffect(() => {
