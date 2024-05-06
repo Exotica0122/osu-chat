@@ -14,54 +14,45 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
-import { createRoomAction } from "./actions";
+import { editRoomAction } from "./actions";
 import { useToast } from "@/components/ui/use-toast";
-import { useRouter } from "next/navigation";
+import { type Room } from "@/server/db/schema";
 
-const createRoomFormSchema = z.object({
+const editRoomFormSchema = z.object({
   name: z.string(),
   description: z.string(),
   tags: z.string(),
   osuCollectorLink: z.union([z.literal(""), z.string().trim().url()]),
 });
 
-type CreateRoomFormSchemaType = z.infer<typeof createRoomFormSchema>;
+type EditRoomFormSchemaType = z.infer<typeof editRoomFormSchema>;
 
-export const CreateRoomForm = () => {
-  const router = useRouter();
+export const EditRoomForm = ({ room }: { room: Room }) => {
   const { toast } = useToast();
-  const form = useForm<CreateRoomFormSchemaType>({
-    resolver: zodResolver(createRoomFormSchema),
+  const form = useForm<EditRoomFormSchemaType>({
+    resolver: zodResolver(editRoomFormSchema),
     defaultValues: {
-      name: "",
-      description: "",
-      tags: "",
-      osuCollectorLink: "",
+      name: room.name,
+      description: room.description ?? "",
+      tags: room.tags,
+      osuCollectorLink: room.osuCollectorLink ?? "",
     },
   });
 
-  const onCreateRoomSubmit = async (values: CreateRoomFormSchemaType) => {
-    const room = await createRoomAction(values);
-    if (!room) {
-      toast({
-        title: "Room Not Created",
-        description: "Could not create room. Please try again",
-      });
-      return;
-    }
+  const onEditRoomSubmit = async (values: EditRoomFormSchemaType) => {
+    await editRoomAction({ ...room, ...values });
     toast({
-      title: "Room Created",
-      description: "Your room was successfully created",
+      title: "Room Edited",
+      description: "Your room was successfully edited",
     });
-    void router.push(`/rooms/${room.id}`);
   };
 
   return (
     <>
-      <h2 className="text-2xl font-bold">Create Room</h2>
+      <h2 className="text-2xl font-bold">Edit Room</h2>
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(onCreateRoomSubmit)}
+          onSubmit={form.handleSubmit(onEditRoomSubmit)}
           className="mt-12 space-y-8"
         >
           <FormField
@@ -116,7 +107,7 @@ export const CreateRoomForm = () => {
               </FormItem>
             )}
           />
-          <Button type="submit">Create Room</Button>
+          <Button type="submit">Save</Button>
         </form>
       </Form>
     </>

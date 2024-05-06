@@ -24,6 +24,20 @@ export async function createRoom(
   return inserted[0];
 }
 
+export async function editRoom(roomData: Room) {
+  const updated = await db
+    .update(room)
+    .set({
+      name: roomData.name,
+      description: roomData.description,
+      osuCollectorLink: roomData.osuCollectorLink,
+      tags: roomData.tags,
+    })
+    .where(eq(room.id, roomData.id))
+    .returning();
+  return updated[0];
+}
+
 export async function getUserRooms() {
   const session = await getServerAuthSession();
 

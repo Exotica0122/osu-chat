@@ -27,10 +27,20 @@ export const SearchBar = () => {
   }, [query, router]);
 
   return (
-    <Input
-      value={search}
-      onChange={(e) => void setSearch(e.target.value)}
-      className="w-96"
-    />
+    <div className="flex items-center gap-4">
+      <Input
+        value={search}
+        onChange={(e) => void setSearch(e.target.value)}
+        className="w-96"
+      />
+      {search && (
+        <p
+          className="cursor-pointer hover:underline"
+          onClick={() => setSearch("")}
+        >
+          clear
+        </p>
+      )}
+    </div>
   );
 };
