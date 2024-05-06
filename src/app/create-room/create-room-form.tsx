@@ -58,11 +58,11 @@ export const CreateRoomForm = () => {
 
   return (
     <>
-      <p>Create Room</p>
+      <h2 className="text-2xl font-bold">Create Room</h2>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onCreateRoomSubmit)}
-          className="space-y-8"
+          className="mt-12 space-y-8"
         >
           <FormField
             control={form.control}
@@ -95,7 +95,7 @@ export const CreateRoomForm = () => {
             name="tags"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Tags (Separated by spaces)</FormLabel>
+                <FormLabel>Tags (Separated by commas)</FormLabel>
                 <FormControl>
                   <Input placeholder="Reading, Low AR" {...field} />
                 </FormControl>

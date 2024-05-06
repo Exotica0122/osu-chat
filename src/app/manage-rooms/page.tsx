@@ -14,7 +14,7 @@ export default async function ManageRooms() {
         <Link href={"/create-room"}>Create Rooms</Link>
       </Button>
 
-      <div>
+      <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {rooms.map((room) => (
           <MyRoomCard {...room} key={room.id} />
         ))}

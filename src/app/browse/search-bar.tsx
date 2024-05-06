@@ -27,8 +27,10 @@ export const SearchBar = () => {
   }, [query, router]);
 
   return (
-    <div className="flex">
-      <Input value={search} onChange={(e) => void setSearch(e.target.value)} />
-    </div>
+    <Input
+      value={search}
+      onChange={(e) => void setSearch(e.target.value)}
+      className="w-96"
+    />
   );
 };
